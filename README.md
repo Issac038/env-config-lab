@@ -27,3 +27,35 @@ Use logs and environment inspection to diagnose the problem.
 5. Fill out `docs/cloud-run-template.md` categorizing variables correctly.
 
 Good luck!
+
+## Verify locally
+
+Docker is required to run the image locally. If Docker is running, verify the fix:
+
+1. Copy the example and set your local values (do NOT commit real secrets):
+
+```bash
+cp .env.example .env
+# edit .env and fill DATABASE_URL and PORT; keep API_KEY empty here
+```
+
+2. Export `API_KEY` in your shell (or provide a real value for testing):
+
+```bash
+export API_KEY="your-local-api-key"
+```
+
+3. Build & run with the helper script (or run the docker commands directly):
+
+```bash
+./scripts/run_local.sh
+```
+
+4. Check logs and environment from the running container:
+
+```bash
+docker logs app-fixed
+docker exec app-fixed printenv
+```
+
+If Docker isn't available here, these steps must be run on a machine with Docker.

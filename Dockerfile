@@ -7,10 +7,7 @@ RUN npm install
 
 COPY app/ .
 
-# Intentionally planted problem 3: Secret hardcoded
-ENV API_KEY=super-secret-key
-
-# Intentionally planted problem 2: Typo in variable name
-ENV LOGLEVEL=info
+# Do NOT bake secrets into images. Provide secrets at runtime instead.
+# See CLOUD_RUN.md for mapping to Cloud Run and docs for local run instructions.
 
 CMD [ "npm", "start" ]
